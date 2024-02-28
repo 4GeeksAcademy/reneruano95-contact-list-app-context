@@ -6,18 +6,18 @@ import { FaEdit } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 
-export const ContactCard = () => {
+export const ContactCard = (props) => {
     return (
-        <ListGroup.Item className="d-flex justify-content-between align-items-center">
+        <ListGroup.Item className="d-flex justify-content-between align-items-center"  id={props.id}>
             <div className="d-flex align-items-center">
                 <div>
                     <Image src="https://fakeimg.pl/100x100?text=dsd" rounded />
                 </div>
                 <div className="ms-3">
-                    <p className="mb-1 fs-5">Full Name</p>
-                    <p className="mb-1 text-secondary"><FaLocationDot /> Adress</p>
-                    <p className="mb-1 text-secondary"><FaPhone /> Phone</p>
-                    <p className="mb-0 text-secondary"><IoMdMail /> Email</p>
+                    <p className="mb-1 fs-5">{props.fullName}</p>
+                    <p className="mb-1 text-secondary"><FaLocationDot /> {props.address}</p>
+                    <p className="mb-1 text-secondary"><FaPhone /> {props.phone}</p>
+                    <p className="mb-0 text-secondary"><IoMdMail /> {props.email}</p>
                 </div>
             </div>
             <div className="d-flex flex-column gap-1">
@@ -30,10 +30,11 @@ export const ContactCard = () => {
                         </Tooltip>
                     }
                 >
-                    <Button variant="secondary" className="d-flex align-items-center">
+                    <Button variant="secondary" className="d-flex align-items-center" onClick={props.onClickEditButton}>
                         <FaEdit />
                     </Button>
                 </OverlayTrigger>
+                //
                 <OverlayTrigger
                     key='bottom'
                     placement='bottom'
@@ -43,7 +44,7 @@ export const ContactCard = () => {
                         </Tooltip>
                     }
                 >
-                    <Button variant="danger" className="d-flex align-items-center">
+                    <Button variant="danger" className="d-flex align-items-center" onClick={props.onClickDeleteButton}>
                         <RiDeleteBin5Fill />
                     </Button>
                 </OverlayTrigger>

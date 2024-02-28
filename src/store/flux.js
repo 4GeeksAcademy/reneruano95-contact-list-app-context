@@ -14,7 +14,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			contacts: [
+				{
+					"address": "11 fangoalpecho dr",
+					"agenda_slug": "test",
+					"email": "rene@gmail.com",
+					"full_name": "rene",
+					"id": 11625172689,
+					"phone": "412-523-3252"
+				},]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -26,6 +35,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then((data) => {
 						const contacts = data.json();
 						setStore({ contacts: contacts });
+						console.log(setStore({ contacts: contacts }))
 					})
 			},
 			getContact: (id) => {
