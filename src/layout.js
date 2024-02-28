@@ -18,7 +18,6 @@ const Layout = () => {
 	return (
 		<div>
 			<BrowserRouter basename={basename}>
-
 				<Navbar />
 				<Routes>
 					<Route path="/" element={<Home />} />
@@ -27,7 +26,6 @@ const Layout = () => {
 					<Route path="*" element={<h1>Not found!</h1>} />
 				</Routes>
 				<Footer />
-
 			</BrowserRouter>
 		</div>
 	);

@@ -1,3 +1,5 @@
+const AGENDA_SLUG = 'test';
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -16,28 +18,100 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
+			loadContacts: () => {
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
+				fetch('https://playground.4geeks.com/apis/fake/contact/agenda/' + AGENDA_SLUG)
+					.then((data) => {
+						const contacts = data.json();
+						setStore({ contacts: contacts });
+					})
 			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
+			getContact: (id) => {
+				fetch('https://playground.4geeks.com/apis/fake/contact/' + id)
+					.then((response) => {
+						console.log('response GET', response.json())
+					})
+					.catch(error => {
+						console.log('ERROR POST', error);
+					})
+			},
+			createContact: (fullName, email, address, phone) => {
+				setStore({ isLoading: true });
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
+				fetch('https://playground.4geeks.com/apis/fake/contact/', {
+					method: 'POST',
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify({
+						full_name: fullName,
+						agenda_slug: AGENDA_SLUG,
+						email,
+						address,
+						phone
+					})
+				})
+					.then(response => {
+						console.log('response POST', response.json());
+						setStore({ isLoading: false });
+					})
+					.catch(error => {
+						console.log('ERROR POST', error);
+						setStore({ isLoading: false });
+					})
+			},
+			updateContact: (fullName, email, address, phone, id) => {
+				setStore({ isLoading: true })
 
-				//reset the global store
-				setStore({ demo: demo });
+				fetch('https://playground.4geeks.com/apis/fake/contact/' + id, {
+					method: "PUT",
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						full_name: fullName,
+						agenda_slug: AGENDA_SLUG,
+						email,
+						address,
+						phone
+					})
+				})
+
+					.then(response => {
+						console.log('response PUT', response.json())
+						setStore({ isLoading: false });
+					})
+					.catch(error => {
+						console.log('ERROR POST', error);
+						setStore({ isLoading: false });
+					})
+
+			},
+			deleteContact: (id) => {
+				fetch('https://playground.4geeks.com/apis/fake/contact/' + id, {
+					method: "DELETE",
+				})
+					.then(response => {
+						console.log('response DELETE', response.json())
+					})
+					.catch(error => {
+						console.log('ERROR POST', error);
+					})
+			},
+			deleteAllContacts: () => {
+				fetch('https://playground.4geeks.com/apis/fake/contact/agenda/' + AGENDA_SLUG, {
+					method: "DELETE",
+				})
+					.then(response => {
+						console.log('response DELETE', response.json())
+					})
+					.catch(error => {
+						console.log('ERROR POST', error);
+					})
 			}
+
 		}
 	};
 };
