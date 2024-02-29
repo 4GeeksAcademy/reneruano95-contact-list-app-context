@@ -32,7 +32,7 @@ const injectContext = PassedComponent => {
 			 *
 			 **/
 
-			// state.actions.createContact('rene', 'rene@gmail.com', '11 fangoalpecho dr', '412-523-3252');
+			// state.actions.createContact('lolo', 'lolo23@gmail.com', '21 fangoalpecho dr', '256-447-6985');
 			// state.actions.updateContact('lolo', 'lolo@gmail.com', '20 fangoalpecho dr', '412-523-3252', '49669738736');
 			// state.actions.deleteContact('49669738736')
 			// state.actions.deleteAllContacts()

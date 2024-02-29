@@ -15,27 +15,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			contacts: [
-				{
-					"address": "11 fangoalpecho dr",
-					"agenda_slug": "test",
-					"email": "rene@gmail.com",
-					"full_name": "rene",
-					"id": 11625172689,
-					"phone": "412-523-3252"
-				},]
+
+
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
+
 			loadContacts: () => {
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
 				fetch('https://playground.4geeks.com/apis/fake/contact/agenda/' + AGENDA_SLUG)
+					.then(resp => resp.json())
 					.then((data) => {
-						const contacts = data.json();
+						const contacts = data
+						
 						setStore({ contacts: contacts });
-						console.log(setStore({ contacts: contacts }))
+						console.log({ contacts: contacts })
 					})
 			},
 			getContact: (id) => {

@@ -8,8 +8,8 @@ import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
-import { Contact } from "./views/Contact";
-import { AddContact } from "./views/AddContact";
+import { Contact } from "./views/contact/Contact";
+import { AddContact } from "./views/add-contact/AddContact";
 
 
 const Layout = () => {
@@ -18,7 +18,7 @@ const Layout = () => {
 	const basename = process.env.BASENAME || "";
 
 	return (
-		<div>
+		<div className="h-100">
 			<BrowserRouter basename={basename}>
 				<Navbar />
 				<Routes>
