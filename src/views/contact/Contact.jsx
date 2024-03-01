@@ -6,16 +6,9 @@ import { Context } from "../../store/appContext";
 
 export const Contact = () => {
     const { store, actions } = useContext(Context)
-    const [newContacts, setNewContacts] = useState({})
-
-    useEffect(() => {
-        setNewContacts(store.contacts);
-    }, [newContacts]);
 
     const deleteContact = (id) => {
         actions.deleteContact(id)
-        const newItems = newContacts.filter((item) => item.id !== id);
-        setNewContacts(newItems);
     };
 
     return (
