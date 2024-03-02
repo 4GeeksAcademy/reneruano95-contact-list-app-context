@@ -5,6 +5,7 @@ import { FaLocationDot, FaPhone } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 import { RiDeleteBin5Fill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 export const ContactCard = (props) => {
     return (
@@ -30,9 +31,11 @@ export const ContactCard = (props) => {
                         </Tooltip>
                     }
                 >
-                    <Button variant="secondary" className="d-flex align-items-center" onClick={props.onClickEditButton}>
-                        <FaEdit />
-                    </Button>
+                    <Link to={"/contact/" + props.id}>
+                        <Button variant="secondary" className="d-flex align-items-center" onClick={props.onClickEditButton}>
+                            <FaEdit />
+                        </Button>
+                    </Link>
                 </OverlayTrigger>
 
                 <OverlayTrigger

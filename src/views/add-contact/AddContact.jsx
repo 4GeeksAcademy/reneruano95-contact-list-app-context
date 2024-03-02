@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { Context } from "../../store/appContext";
 
 export const AddContact = () => {
@@ -11,21 +11,29 @@ export const AddContact = () => {
         address: '',
         phone: ""
     })
+    useEffect(() => {
+        console.log(location.pathname)
+    }, [])
+
+    const params = useParams()
+    let location = useLocation();
+
 
     const handleSubmit = () => {
         // e.preventDefault()
-        console.log(contacts)
-        actions.createContact(contacts.full_name, contacts.email, contacts.address, contacts.phone);
+        {
+            location.pathname === '/add-contact' ? actions.createContact(contacts.full_name, contacts.email, contacts.address, contacts.phone) :
+                actions.updateContact(contacts.full_name, contacts.email, contacts.address, contacts.phone, params.theid)
+        }
     }
 
     return (
         <div className="container">
             <h1 className="text-center">Add a new contact</h1>
-
             <Form onSubmit={handleSubmit}>
-                <div className="row justify-content-center ">
+                <div className="row justify-content-center">
                     <div className="col-sm-10 mb-2">
-                        <Link to='/contact'>
+                        <Link to='/contact' className="text-decoration-none">
                             <Button variant="secondary" className="d-flex align-items-center justify-content-between">
                                 <p className="ps-1 m-0">Go Back</p>
                             </Button>
@@ -84,7 +92,7 @@ export const AddContact = () => {
                     </div>
                     <div className="col-sm-10">
                         <Button className="w-100" variant="primary" type="submit">
-                            Submit
+                            {location.pathname === '/add-contact' ? 'Submit' : 'Update'}
                         </Button>
                     </div>
 
