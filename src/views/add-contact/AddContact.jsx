@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { Context } from "../../store/appContext";
 
 export const AddContact = () => {
@@ -11,25 +11,29 @@ export const AddContact = () => {
         address: '',
         phone: ""
     })
-    useEffect(() => {
-        console.log(location.pathname)
-    }, [])
+
 
     const params = useParams()
     let location = useLocation();
+    const navigate = useNavigate();
 
 
     const handleSubmit = () => {
-        // e.preventDefault()
+
         {
             location.pathname === '/add-contact' ? actions.createContact(contacts.full_name, contacts.email, contacts.address, contacts.phone) :
                 actions.updateContact(contacts.full_name, contacts.email, contacts.address, contacts.phone, params.theid)
         }
+        // navigate("/contact")
     }
 
     return (
         <div className="container">
-            <h1 className="text-center">Add a new contact</h1>
+            {location.pathname === '/add-contact' ? (
+                <h1 className="text-center">Add a new contact</h1>
+            ) : (
+                <h1 className="text-center"> Update contact ID: {params.theid}</h1>
+            )}
             <Form onSubmit={handleSubmit}>
                 <div className="row justify-content-center">
                     <div className="col-sm-10 mb-2">
@@ -73,7 +77,7 @@ export const AddContact = () => {
                                 placeholder="Enter phone number"
                                 value={contacts.phone}
                                 onChange={(e) => { setContacts({ ...contacts, phone: e.target.value }) }}
-                                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                                // pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                                 required
                             />
                         </Form.Group>
@@ -91,11 +95,12 @@ export const AddContact = () => {
                         </Form.Group>
                     </div>
                     <div className="col-sm-10">
+
                         <Button className="w-100" variant="primary" type="submit">
                             {location.pathname === '/add-contact' ? 'Submit' : 'Update'}
                         </Button>
-                    </div>
 
+                    </div>
                 </div >
             </Form >
         </div >

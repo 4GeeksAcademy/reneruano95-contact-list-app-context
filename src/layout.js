@@ -1,9 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { Home } from "./views/home";
-import { Demo } from "./views/demo";
-import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -18,18 +15,15 @@ const Layout = () => {
 	const basename = process.env.BASENAME || "";
 
 	return (
-		<div className="h-100">
+		<div className="h-100 d-flex flex-column">
 			<BrowserRouter basename={basename}>
 				<Navbar />
 				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/demo" element={<Demo />} />
 
 					<Route path="/contact" element={<Contact />} />
 					<Route path="/add-contact" element={<AddContact />} />
 					<Route path="/contact/:theid" element={<AddContact />} />
 
-					<Route path="/single/:theid" element={<Single />} />
 					<Route path="*" element={<h1>Not found!</h1>} />
 				</Routes>
 				<Footer />

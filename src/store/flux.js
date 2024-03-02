@@ -28,9 +28,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(resp => resp.json())
 					.then((data) => {
 						const contacts = data
-						
+
 						setStore({ contacts: contacts });
-						console.log({ contacts: contacts })
+						// console.log({ contacts: contacts })
 					})
 			},
 			getContact: (id) => {

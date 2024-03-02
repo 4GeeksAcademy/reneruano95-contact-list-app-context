@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Image, ListGroup, OverlayTrigger, Tooltip } from "react-bootstrap";
 
 import { FaLocationDot, FaPhone } from "react-icons/fa6";
@@ -6,8 +6,11 @@ import { FaEdit } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { VerticallyCenteredModal } from "./VerticallyCenteredModal";
 
 export const ContactCard = (props) => {
+
+
     return (
         <ListGroup.Item className="d-flex justify-content-between align-items-center border border-2" id={props.id}>
             <div className="d-flex align-items-center">
@@ -47,11 +50,12 @@ export const ContactCard = (props) => {
                         </Tooltip>
                     }
                 >
-                    <Button variant="danger" className="d-flex align-items-center" onClick={props.onClickDeleteButton}>
+                    <Button variant="danger" className="d-flex align-items-center" onClick={props.onShowModal}>
                         <RiDeleteBin5Fill />
                     </Button>
                 </OverlayTrigger>
             </div>
+            
         </ListGroup.Item >
     )
 }
