@@ -10,11 +10,12 @@ export const Contact = () => {
     const { store, actions } = useContext(Context)
 
     const [show, setShow] = useState(false)
+    const [selectedId, setSelectedId] = useState(null);
 
     const deleteContact = (id) => {
         actions.deleteContact(id)
-
-        window.location.reload()
+        console.log(id)
+        // window.location.reload()
     };
 
     return (
@@ -32,27 +33,27 @@ export const Contact = () => {
                     <ListGroup className="col-sm-10 col-md-8 gap-2">
                         {store.contacts.map((item, index) => {
                             return (
-                                <>
+                                <div key={index}>
                                     <ContactCard
-                                        key={index}
                                         id={item.id}
                                         fullName={item.full_name}
                                         address={item.address}
                                         phone={item.phone}
                                         email={item.email}
-                                        onShowModal={() => setShow(true)}
+                                        onShowModal={() => {
+                                            setShow(true)
+                                            setSelectedId(item.id)
+                                        }}
+
                                     />
                                     <VerticallyCenteredModal
-                                        key={item.id}
                                         title='Are you sure?'
                                         description='If you delete this thing the entire universe will go down!'
-                                        onClickDeleteButton={() => {
-                                            deleteContact(item.id)
-                                        }}
+                                        onClickDeleteButton={() => deleteContact(selectedId)}
                                         show={show}
                                         onHide={() => setShow(false)}
                                     />
-                                </>
+                                </div>
                             )
                         })}
                     </ListGroup >

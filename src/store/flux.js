@@ -83,7 +83,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						phone
 					})
 				})
-
 					.then(response => {
 						console.log('response PUT', response.json())
 						setStore({ isLoading: false });
@@ -100,6 +99,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(response => {
 						console.log('response DELETE', response.json())
+						window.location.reload();
 					})
 					.catch(error => {
 						console.log('ERROR POST', error);
