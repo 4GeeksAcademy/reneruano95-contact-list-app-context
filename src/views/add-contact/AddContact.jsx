@@ -28,16 +28,20 @@ export const AddContact = () => {
             address: '',
             phone: ''
         })
-        if (location.pathname === '/add-contact') {
-            window.location.reload()
-            return actions.createContact(contacts.full_name, contacts.email, contacts.address, contacts.phone);
-        } else {
-            window.location.reload()
-            return actions.updateContact(contacts.full_name, contacts.email, contacts.address, contacts.phone, params.theid);
-        }
 
+        const timer = setTimeout(() => {
+            if (location.pathname === '/add-contact') {
+                window.location.reload()
+                return actions.createContact(contacts.full_name, contacts.email, contacts.address, contacts.phone);
+            } else {
+                window.location.reload()
+                return actions.updateContact(contacts.full_name, contacts.email, contacts.address, contacts.phone, params.theid);
+            }
+        }, 3000);
         // navigate("/contact")
-
+        return function cleanUp() {
+            clearTimeout(timer);
+        };
     }
 
     return (
