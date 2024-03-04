@@ -19,11 +19,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 		},
 		actions: {
-
 			loadContacts: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
 				fetch('https://playground.4geeks.com/apis/fake/contact/agenda/' + AGENDA_SLUG)
 					.then(resp => resp.json())
 					.then((data) => {
@@ -116,7 +112,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log('ERROR POST', error);
 					})
 			}
-
 		}
 	};
 };

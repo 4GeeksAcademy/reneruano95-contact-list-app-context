@@ -19,16 +19,25 @@ export const AddContact = () => {
     // const navigate = useNavigate();
 
 
-    const handleSubmit = () => {
-
+    const handleSubmit = (e) => {
+        setShowToast(true)
+        e.preventDefault()
+        setContacts({
+            full_name: '',
+            email: '',
+            address: '',
+            phone: ''
+        })
         if (location.pathname === '/add-contact') {
-            setShowToast(true)
+            window.location.reload()
             return actions.createContact(contacts.full_name, contacts.email, contacts.address, contacts.phone);
         } else {
-            setShowToast(true)
+            window.location.reload()
             return actions.updateContact(contacts.full_name, contacts.email, contacts.address, contacts.phone, params.theid);
         }
+
         // navigate("/contact")
+
     }
 
     return (
@@ -38,7 +47,7 @@ export const AddContact = () => {
             ) : (
                 <h1 className="text-center"> Update contact ID: {params.theid}</h1>
             )}
-            <Form onSubmit={handleSubmit}>
+            <Form>
                 <div className="row justify-content-center">
                     <div className="row justify-content-center">
                         <div className="col-sm-10 mb-2">
@@ -99,7 +108,7 @@ export const AddContact = () => {
                             </Form.Group>
                         </div>
                         <div className="col-sm-10">
-                            <Button className="w-100" variant="primary" type="submit"  >
+                            <Button className="w-100" variant="primary" type="submit" onClick={handleSubmit}>
                                 {location.pathname === '/add-contact' ? 'Submit' : 'Update'}
                             </Button>
                         </div>
