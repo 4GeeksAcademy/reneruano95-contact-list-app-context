@@ -13,11 +13,10 @@ export const ContactCard = (props) => {
 
     return (
         <>
-
             <ListGroup.Item className="d-flex justify-content-between align-items-center border border-2" id={props.id}>
                 <div className="d-flex align-items-center">
                     <div>
-                        <Image src="https://fakeimg.pl/100x100?text=dsd" rounded />
+                        <Image src={`https://fakeimg.pl/100x100?text=${props.textImg}`} rounded />
                     </div>
                     <div className="ms-3">
                         <p className="mb-1 fs-5">{props.fullName}</p>
@@ -57,7 +56,7 @@ export const ContactCard = (props) => {
                         </Button>
                     </OverlayTrigger>
                 </div>
-               
+
             </ListGroup.Item >
         </>
     )

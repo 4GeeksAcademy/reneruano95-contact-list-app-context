@@ -26,37 +26,38 @@ export const Contact = () => {
                         </Button>
                     </Link>
                 </div>
-                {store.contacts ? (
+                {store.isLoading ? (
+                    <h1 className="text-center">Loading...</h1>
+                ) : store.contacts ? (
                     <ListGroup className="col-sm-10 col-md-8 gap-2">
-                        {
-                            store.contacts.map((item, index) => {
-                                return (
-                                    <div key={index}>
-                                        <ContactCard
-                                            id={item.id}
-                                            fullName={item.full_name}
-                                            address={item.address}
-                                            phone={item.phone}
-                                            email={item.email}
-                                            onShowModal={() => {
-                                                setShow(true)
-                                                setSelectedId(item.id)
-                                            }}
-                                        />
-                                        <VerticallyCenteredModal
-                                            title='Are you sure?'
-                                            description='If you delete this thing the entire universe will go down!'
-                                            onClickDeleteButton={() => deleteContact(selectedId)}
-                                            show={show}
-                                            onHide={() => setShow(false)}
-                                        />
-                                    </div>
-                                )
-                            })
-                        }
+                        {store.contacts.map((item, index) => {
+                            return (
+                                <div key={index}>
+                                    <ContactCard
+                                        id={item.id}
+                                        textImg={item.full_name}
+                                        fullName={item.full_name}
+                                        address={item.address}
+                                        phone={item.phone}
+                                        email={item.email}
+                                        onShowModal={() => {
+                                            setShow(true)
+                                            setSelectedId(item.id)
+                                        }}
+                                    />
+                                    <VerticallyCenteredModal
+                                        title='Are you sure?'
+                                        description='If you delete this thing the entire universe will go down!'
+                                        onClickDeleteButton={() => deleteContact(selectedId)}
+                                        show={show}
+                                        onHide={() => setShow(false)}
+                                    />
+                                </div>
+                            )
+                        })}
                     </ListGroup >
                 ) : (
-                    <h1 className="text-center">Loading...</h1>
+                    <h1 className="text-center">Please create a contact</h1>
                 )}
             </div>
         </div >

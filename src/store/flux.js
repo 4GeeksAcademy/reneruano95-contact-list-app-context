@@ -20,9 +20,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			loadContacts: () => {
+				setStore({ isLoading: true });
+
 				fetch('https://playground.4geeks.com/apis/fake/contact/agenda/' + AGENDA_SLUG)
-					.then(resp => resp.json())
+					.then(resp => {
+						setStore({ isLoading: false });
+						return resp.json()
+					})
 					.then((data) => {
+						setStore({ isLoading: false });
 						const contacts = data
 
 						setStore({ contacts: contacts });
