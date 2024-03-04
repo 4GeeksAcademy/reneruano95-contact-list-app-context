@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Image, ListGroup, OverlayTrigger, Tooltip } from "react-bootstrap";
 
 import { FaLocationDot, FaPhone } from "react-icons/fa6";
@@ -6,7 +6,6 @@ import { FaEdit } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import { VerticallyCenteredModal } from "./VerticallyCenteredModal";
 
 export const ContactCard = (props) => {
 
@@ -40,7 +39,7 @@ export const ContactCard = (props) => {
                         </Button>
                     </Link>
                 </OverlayTrigger>
-
+                {/* */}
                 <OverlayTrigger
                     key='bottom'
                     placement='bottom'
@@ -55,7 +54,6 @@ export const ContactCard = (props) => {
                     </Button>
                 </OverlayTrigger>
             </div>
-            
         </ListGroup.Item >
     )
 }

@@ -14,7 +14,6 @@ export const Contact = () => {
     const deleteContact = (id) => {
         actions.deleteContact(id)
 
-        actions.loadContacts()
         window.location.reload()
     };
 
@@ -28,6 +27,7 @@ export const Contact = () => {
                         </Button>
                     </Link>
                 </div>
+
                 {store.contacts ? (
                     <ListGroup className="col-sm-10 col-md-8 gap-2">
                         {store.contacts.map((item, index) => {
@@ -40,9 +40,6 @@ export const Contact = () => {
                                         address={item.address}
                                         phone={item.phone}
                                         email={item.email}
-                                        // onClickDeleteButton={() => {
-                                        //     deleteContact(item.id)
-                                        // }}
                                         onShowModal={() => setShow(true)}
                                     />
                                     <VerticallyCenteredModal
@@ -65,7 +62,6 @@ export const Contact = () => {
                 {/* {!store.contacts ? (
                 <h1 className="text-center">Please create a contact</h1>
             ) : ''} */}
-
             </div>
         </div >
     )

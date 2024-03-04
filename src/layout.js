@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
 import injectContext from "./store/appContext";
 
@@ -19,12 +19,16 @@ const Layout = () => {
 			<BrowserRouter basename={basename}>
 				<Navbar />
 				<Routes>
-
 					<Route path="/contact" element={<Contact />} />
 					<Route path="/add-contact" element={<AddContact />} />
 					<Route path="/contact/:theid" element={<AddContact />} />
 
-					<Route path="*" element={<h1>Not found!</h1>} />
+					<Route path="*" element={
+						<h1 className="text-center">
+							Not found! Maybe try to go to <Link to='/contact'>/contact</Link>
+						</h1>
+					}
+					/>
 				</Routes>
 				<Footer />
 			</BrowserRouter>

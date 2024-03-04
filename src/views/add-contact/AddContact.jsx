@@ -15,7 +15,7 @@ export const AddContact = () => {
 
     const params = useParams()
     let location = useLocation();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
 
     const handleSubmit = () => {
@@ -67,7 +67,6 @@ export const AddContact = () => {
                                 required
                             />
                         </Form.Group>
-
                     </div>
                     <div className="col-sm-10 col-md-4 mb-2">
                         <Form.Group as={Col} controlId="formGridPhone">
@@ -95,11 +94,9 @@ export const AddContact = () => {
                         </Form.Group>
                     </div>
                     <div className="col-sm-10">
-
                         <Button className="w-100" variant="primary" type="submit">
                             {location.pathname === '/add-contact' ? 'Submit' : 'Update'}
                         </Button>
-
                     </div>
                 </div >
             </Form >
